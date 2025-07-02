@@ -4,7 +4,7 @@ import "./App.css";
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [subName, setSubName] = useState("");
-  const [subHours, setSubHours] = useState(0);
+  const [subHours, setSubHours] = useState();
   const [data, setData] = useState([]);
   const handleChange = () => {
     setIsOpen(!isOpen);
@@ -27,43 +27,47 @@ function App() {
     setSubHours(0);
   };
 
-  console.log({ data });
-
   return (
     <div className="flex gap-4 flex-col relative border-4 h-screen">
       {isOpen ? (
         <div className="absolute inset-0 bg-black/20 backdrop-filter backdrop-blur z-10">
-          <div className="py-4 px-12 bg-amber-50 h-80 w-80 flex flex-col justify-center items-center m-auto absolute inset-0 z-20">
+          <div className="py-4 px-12 bg-gray-50 h-80 w-80 rounded flex flex-col items-center m-auto absolute inset-0 z-20">
+            <p className="text-xl font-bold mb-4">Add subject</p>
             <form>
               <div className="">
-                <label htmlFor="">Subject name</label>
+                <label htmlFor="" className="text-sm">
+                  Subject name
+                </label>
                 <input
                   type="text"
-                  placeholder=""
-                  className="border rounded text-black"
+                  placeholder="Anatomy"
+                  className="border rounded text-black p-1"
                   value={subName}
                   onChange={(e) => setSubName(e.target.value)}
                 />
               </div>
               <div className="my-2">
-                <label htmlFor="">Subject hours</label>
+                <label htmlFor="" className="text-sm">
+                  Subject hours
+                </label>
                 <input
                   type="number"
-                  className="border rounded"
+                  className="border rounded p-1"
+                  placeholder="50"
                   value={subHours}
                   onChange={(e) => setSubHours(e.target.value)}
                 />
               </div>
-              <div className="flex gap-2 justify-center">
+              <div className="flex gap-2 justify-start mt-4">
                 <button
-                  className="border rounded px-1 text-sm shadow bg-gray-700 text-white hover:bg-gray-800"
+                  className="rounded px-2 py-1 text-sm hover:shadow bg-gray-700 text-white hover:bg-gray-800"
                   onClick={handleSubmit}
                   type="submit"
                 >
                   Submit
                 </button>
                 <button
-                  className="border rounded px-1 text-sm shadow"
+                  className="border rounded px-2 py-1 text-sm hover:shadow hover:bg-gray-300"
                   onClick={handleChange}
                 >
                   Close
@@ -74,7 +78,7 @@ function App() {
         </div>
       ) : null}
       <button
-        className="px-3 py-1 rounded bg-gray-700 text-white hover:bg-gray-800 hover:text-blue-500 shadow mt-2 mx-2"
+        className="px-3 py-1 rounded bg-gray-700 text-white hover:bg-gray-800 shadow mt-2 mx-2"
         onClick={handleChange}
       >
         Add new subject
