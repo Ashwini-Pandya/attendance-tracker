@@ -132,7 +132,7 @@ function App() {
             </div>
             <div className="flex items-end justify-end flex-row space-x-3 pr-1">
               <div className="flex flex-col">
-                <h3 className="text-center text-2xl font-light">
+                <h3 className="text-center text-2xl font-semibold">
                   {Number(sub.subHours) -
                     Number(sub.MinClassesToAttend) -
                     Number(sub.ClassesMissed)}
@@ -146,7 +146,7 @@ function App() {
                   type="number"
                   value={sub.ClassesMissed}
                   onChange={(e) => updateMissed(i, e.target.value)}
-                  className="text-center text-2xl font-light border border-gray-100 rounded-sm focus:outline-none w-10"
+                  className="text-center text-2xl font-semibold border border-gray-100 rounded-sm focus:outline-none w-10"
                 />
                 <label className="text-md text-center text-gray-600 font-md">
                   Missed
