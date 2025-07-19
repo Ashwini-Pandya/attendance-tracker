@@ -5,6 +5,8 @@ function App() {
   const [change, setChange] = useState(false);
   const [subName, setSubName] = useState("");
   const [subHours, setSubHours] = useState();
+  // const [cancel, setCancel] = useState(false);
+  const [subToDel, setSubToDel] = useState(null);
   const [data, setData] = useState(() => {
     const savedData = localStorage.getItem("subjects");
     return savedData ? JSON.parse(savedData) : [];
@@ -45,9 +47,10 @@ function App() {
     setData(newData);
   };
 
-  const removeSubject = (index) => {
-    const newData = data.filter((_, i) => i !== index);
+  const removeSubject = () => {
+    const newData = data.filter((_, i) => i !== subToDel);
     setData(newData);
+    setSubToDel(null);
   };
 
   return (
@@ -101,6 +104,34 @@ function App() {
           </div>
         </div>
       )}
+
+      {subToDel !== null && (
+        <div className="flex justify-center items-center fixed inset-0 backdrop-filter backdrop-blur z-10">
+          <div className="border-gray-500 h-40  rounded-lg p-4 flex justify-center bg-white shadow-xl w-full max-w-sm">
+            <div>
+              <h2 className="text-wrap w-full">
+                {" "}
+                Are you sure you want to remove this subject?
+              </h2>{" "}
+            </div>
+            <div className="flex justify-end items-end space-x-2">
+              <button
+                onClick={removeSubject}
+                className="border bg-red-500 text-white px-2 py-1 rounded-md hover:shadow-xl hover:bg-red-600"
+              >
+                Delete
+              </button>
+              <button
+                onClick={() => setSubToDel(null)}
+                className="border px-2 py-1 bg-gray-400 border-gray-400 rounded-md hover:bg-gray-500 hover:shadow-xl "
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <button
         className="rounded-md bg-gray-500 text-white px-4 py-2 hover:bg-gray-800"
         onClick={handleClick}
@@ -114,7 +145,7 @@ function App() {
             className="relative flex justify-between border-2 border-amber-300 bg-amber-100 rounded-lg p-4 shadow-lg mb-2"
           >
             <button
-              onClick={() => removeSubject(i)}
+              onClick={() => setSubToDel(i)}
               className="absolute top-1 right-1 border-amber-100 bg-text-red-500 ml-2 hover:bg-gray-400 text-xs"
             >
               ⛔
