@@ -54,10 +54,10 @@ function App() {
   };
 
   return (
-    <div className="flex p-4 flex-col border-4 w-full h-screen mx-auto space-y-6">
+    <div className="flex p-4 flex-col h-screen space-y-6 w-full mx-auto">
       {change && (
         <div className="fixed inset-0 bg-black/40 backdrop-filter backdrop-blur z-10 flex items-center justify-center">
-          <div className="bg-white rounded-lg shadow-xl p-6 space-y-4 w-full max-w-sm ">
+          <div className="bg-white rounded-lg mx-2 shadow-xl p-6 space-y-4 w-full max-w-sm ">
             <div>
               <form>
                 <div>
@@ -107,26 +107,29 @@ function App() {
 
       {subToDel !== null && (
         <div className="flex justify-center items-center fixed inset-0 backdrop-filter backdrop-blur z-10">
-          <div className="border-gray-500 h-40  rounded-lg p-4 flex justify-center bg-white shadow-xl w-full max-w-sm">
-            <div>
-              <h2 className="text-wrap w-full">
-                {" "}
-                Are you sure you want to remove this subject?
-              </h2>{" "}
-            </div>
-            <div className="flex justify-end items-end space-x-2">
-              <button
-                onClick={removeSubject}
-                className="border bg-red-500 text-white px-2 py-1 rounded-md hover:shadow-xl hover:bg-red-600"
-              >
-                Delete
-              </button>
-              <button
-                onClick={() => setSubToDel(null)}
-                className="border px-2 py-1 bg-gray-400 border-gray-400 rounded-md hover:bg-gray-500 hover:shadow-xl "
-              >
-                Cancel
-              </button>
+          <div className="border-gray-500 mx-3 h-35  rounded-lg p-4 flex justify-center bg-white shadow-xl max-w-sm">
+            <div className="">
+              <div>
+                <h2 className="text-wrap w-full">
+                  {" "}
+                  Are you sure you want to remove this subject?
+                </h2>{" "}
+              </div>
+
+              <div className="flex justify-end items-end space-x-2 w-full h-15 bottom-0">
+                <button
+                  onClick={removeSubject}
+                  className="border bg-red-500 text-white px-2 py-1 rounded-md hover:shadow-xl hover:bg-red-600"
+                >
+                  Delete
+                </button>
+                <button
+                  onClick={() => setSubToDel(null)}
+                  className="border px-2 py-1 bg-gray-400 border-gray-400 rounded-md hover:bg-gray-500 hover:shadow-xl "
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
         </div>
