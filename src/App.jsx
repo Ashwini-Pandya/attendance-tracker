@@ -164,9 +164,11 @@ function App() {
             <div className="flex items-end justify-end flex-row space-x-3 pr-1">
               <div className="flex flex-col">
                 <h3 className="text-center text-2xl font-semibold text-gray-800">
-                  {Number(sub.subHours) -
-                    Number(sub.MinClassesToAttend) -
-                    Number(sub.ClassesMissed)}
+                  {Math.floor(
+                    Number(sub.subHours) -
+                      Number(sub.MinClassesToAttend) -
+                      Number(sub.ClassesMissed)
+                  )}
                 </h3>
                 <h2 className="text-center text-md text-gray-600 font-md">
                   Leaves Left
