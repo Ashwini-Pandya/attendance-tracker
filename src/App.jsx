@@ -107,7 +107,7 @@ function App() {
 
       {subToDel !== null && (
         <div className="flex justify-center items-center fixed inset-0 backdrop-filter backdrop-blur z-10">
-          <div className="border-gray-500 mx-3 h-35  rounded-lg p-4 flex justify-center bg-white shadow-xl max-w-sm">
+          <div className="border-gray-500 mx-3 h-40  rounded-lg p-4 flex justify-center bg-white shadow-xl max-w-sm">
             <div className="">
               <div>
                 <h2 className="text-wrap w-full">
@@ -116,7 +116,7 @@ function App() {
                 </h2>{" "}
               </div>
 
-              <div className="flex justify-end items-end space-x-2 w-full h-15 bottom-0">
+              <div className="flex justify-end items-end space-x-2 w-full h-20 bottom-0">
                 <button
                   onClick={removeSubject}
                   className="border bg-red-500 text-white px-2 py-1 rounded-md hover:shadow-xl hover:bg-red-600"
@@ -192,7 +192,6 @@ function App() {
           </div>
         ))}
       </div>
-      <footer> Made with Love</footer>
     </div>
   );
 }
