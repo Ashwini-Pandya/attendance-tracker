@@ -116,7 +116,7 @@ function App() {
                 </h2>{" "}
               </div>
 
-              <div className="flex justify-end items-end space-x-2 w-full h-25">
+              <div className="h-20 flex justify-end items-end space-x-2 w-full">
                 <button
                   onClick={removeSubject}
                   className="border bg-red-500 text-white px-2 py-1 rounded-md hover:shadow-xl hover:bg-red-600"
