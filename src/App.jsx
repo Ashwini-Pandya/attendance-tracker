@@ -192,6 +192,7 @@ function App() {
           </div>
         ))}
       </div>
+      <footer> Made with Love</footer>
     </div>
   );
 }
