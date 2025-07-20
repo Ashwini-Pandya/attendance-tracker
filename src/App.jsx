@@ -5,6 +5,7 @@ function App() {
   const [change, setChange] = useState(false);
   const [subName, setSubName] = useState("");
   const [subHours, setSubHours] = useState();
+  const [minAttendance, setMinAttendance] = useState(80);
   // const [cancel, setCancel] = useState(false);
   const [subToDel, setSubToDel] = useState(null);
   const [data, setData] = useState(() => {
@@ -31,9 +32,10 @@ function App() {
     const newData = {
       subName,
       subHours,
-      ClassesMissed: 0,
-      MinClassesToAttend: 0.8 * Number(subHours),
+      ClassesMissed: "0",
+      MinClassesToAttend: (minAttendance / 100) * Number(subHours),
     };
+    console.log(minAttendance);
 
     setData([...data, newData]);
     handleClick();
@@ -69,7 +71,7 @@ function App() {
                     type="text"
                     value={subName}
                     onChange={(e) => setSubName(e.target.value)}
-                    className="border border-gray-300 rounded-md text-sm w-full p-2"
+                    className="border border-gray-300 rounded-md text-sm w-full p-2 focus:outline-none"
                   />
                 </div>
                 <div>
@@ -80,7 +82,16 @@ function App() {
                     type="number"
                     value={subHours}
                     onChange={(e) => setSubHours(e.target.value)}
-                    className="border border-gray-300 rounded-md text-sm w-full p-2"
+                    className="border border-gray-300 rounded-md text-sm w-full p-2 focus:outline-none"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label> Attendance Criteria</label>
+                  <input
+                    type="number"
+                    value={minAttendance}
+                    onChange={(e) => setMinAttendance(e.target.value)}
+                    className="border border-gray-300 rounded-md text-sm w-full p-2 focus:outline-none"
                   />
                 </div>
               </form>
@@ -153,8 +164,15 @@ function App() {
             leavesLeft <= 0
               ? "bg-red-200 border-red-400"
               : leavesLeft <= 2
-              ? "bg-orange-300 border-amber-400"
+              ? "bg-orange-300 border-amber-500"
               : "bg-amber-100 border-amber-300";
+          const inputBorder =
+            leavesLeft <= 0
+              ? "border-red-200"
+              : leavesLeft <= 2
+              ? "border-orange-300"
+              : "border-amber-100";
+
           return (
             <div
               key={i}
@@ -189,9 +207,10 @@ function App() {
                 <div className="flex flex-col items-center">
                   <input
                     type="number"
+                    placeholder="Tap to add"
                     value={sub.ClassesMissed}
                     onChange={(e) => updateMissed(i, e.target.value)}
-                    className="text-center text-2xl font-semibold border border-gray-100 rounded-sm focus:outline-none w-10 text-gray-800 "
+                    className={`text-center text-2xl font-semibold border rounded-sm focus:outline-none w-10 text-gray-800 ${inputBorder}`}
                   />
                   <label className="text-md text-center text-gray-600 font-md">
                     Missed
