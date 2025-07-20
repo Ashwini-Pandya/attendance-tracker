@@ -159,7 +159,7 @@ function App() {
               Number(sub.MinClassesToAttend) -
               Number(sub.ClassesMissed)
           );
-          const warning = leavesLeft < 0 ? "No" : leavesLeft;
+          const warning = leavesLeft < 1 ? "No" : leavesLeft;
           const bgColor =
             leavesLeft <= 0
               ? "bg-red-200 border-red-400"
