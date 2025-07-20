@@ -142,55 +142,65 @@ function App() {
         Add Subject
       </button>
       <div>
-        {data.map((sub, i) => (
-          <div
-            key={i}
-            className="relative flex justify-between border-2 border-amber-300 bg-amber-100 rounded-lg p-4 shadow-lg mb-2"
-          >
-            <button
-              onClick={() => setSubToDel(i)}
-              className="absolute top-1 right-1 border-amber-100 bg-text-red-500 ml-2 hover:bg-gray-400 text-xs"
+        {data.map((sub, i) => {
+          const leavesLeft = Math.floor(
+            Number(sub.subHours) -
+              Number(sub.MinClassesToAttend) -
+              Number(sub.ClassesMissed)
+          );
+          const warning = leavesLeft < 0 ? "No" : leavesLeft;
+          const bgColor =
+            leavesLeft <= 0
+              ? "bg-red-200 border-red-400"
+              : leavesLeft <= 2
+              ? "bg-orange-300 border-amber-400"
+              : "bg-amber-100 border-amber-300";
+          return (
+            <div
+              key={i}
+              className={`relative flex justify-between border-2 rounded-lg p-4 shadow-lg mb-2 ${bgColor}`}
             >
-              ⛔
-            </button>
-            <div>
-              <h2 className="text-lg text-gray-800 font-bold uppercase">
-                {sub.subName}
-              </h2>
-              <div className="flex flex-row">
-                <h2 className="flex pt-3 mt text-sm text-gray-600">
-                  Lectures:
-                  <span className="font-semibold pl-1">{sub.subHours}</span>
+              <button
+                onClick={() => setSubToDel(i)}
+                className="absolute top-1 right-1 border-amber-100 bg-text-red-500 ml-2 hover:bg-gray-400 text-xs"
+              >
+                ⛔
+              </button>
+              <div>
+                <h2 className="text-lg text-gray-800 font-bold uppercase">
+                  {sub.subName}
                 </h2>
+                <div className="flex flex-row">
+                  <h2 className="flex pt-3 mt text-sm text-gray-600">
+                    Lectures:
+                    <span className="font-semibold pl-1">{sub.subHours}</span>
+                  </h2>
+                </div>
+              </div>
+              <div className="flex items-end justify-end flex-row space-x-3 pr-1">
+                <div className="flex flex-col">
+                  <h3 className="text-center text-2xl font-semibold text-gray-800">
+                    {warning}
+                  </h3>
+                  <h2 className="text-center text-md text-gray-600 font-md">
+                    Leaves Left
+                  </h2>
+                </div>
+                <div className="flex flex-col items-center">
+                  <input
+                    type="number"
+                    value={sub.ClassesMissed}
+                    onChange={(e) => updateMissed(i, e.target.value)}
+                    className="text-center text-2xl font-semibold border border-gray-100 rounded-sm focus:outline-none w-10 text-gray-800 "
+                  />
+                  <label className="text-md text-center text-gray-600 font-md">
+                    Missed
+                  </label>
+                </div>
               </div>
             </div>
-            <div className="flex items-end justify-end flex-row space-x-3 pr-1">
-              <div className="flex flex-col">
-                <h3 className="text-center text-2xl font-semibold text-gray-800">
-                  {Math.floor(
-                    Number(sub.subHours) -
-                      Number(sub.MinClassesToAttend) -
-                      Number(sub.ClassesMissed)
-                  )}
-                </h3>
-                <h2 className="text-center text-md text-gray-600 font-md">
-                  Leaves Left
-                </h2>
-              </div>
-              <div className="flex flex-col items-center">
-                <input
-                  type="number"
-                  value={sub.ClassesMissed}
-                  onChange={(e) => updateMissed(i, e.target.value)}
-                  className="text-center text-2xl font-semibold border border-gray-100 rounded-sm focus:outline-none w-10 text-gray-800 "
-                />
-                <label className="text-md text-center text-gray-600 font-md">
-                  Missed
-                </label>
-              </div>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
