@@ -1,27 +1,26 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-
+import LandingPage from "./landingPage";
 function App() {
   const [change, setChange] = useState(false);
   const [subName, setSubName] = useState("");
   const [subHours, setSubHours] = useState();
   const [minAttendance, setMinAttendance] = useState(80);
-  // const [cancel, setCancel] = useState(false);
   const [subToDel, setSubToDel] = useState(null);
   const [data, setData] = useState(() => {
     const savedData = localStorage.getItem("subjects");
     return savedData ? JSON.parse(savedData) : [];
   });
 
+  useEffect(() => {
+    localStorage.setItem("subjects", JSON.stringify(data));
+  }, [data]);
+
   const isDataValid =
     subName.trim() !== "" &&
     subHours !== "" &&
     !isNaN(subHours) &&
     subHours != 0;
-
-  useEffect(() => {
-    localStorage.setItem("subjects", JSON.stringify(data));
-  }, [data]);
 
   const handleClick = () => {
     setChange(!change);
