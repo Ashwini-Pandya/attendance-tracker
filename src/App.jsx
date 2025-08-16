@@ -5,7 +5,7 @@ import LandingPage from "./LandingPage";
 function App() {
   // New state to control which view to show
   const [showLanding, setShowLanding] = useState(true);
-  
+
   // Your existing states
   const [change, setChange] = useState(false);
   const [subName, setSubName] = useState("");
@@ -184,7 +184,7 @@ function App() {
       >
         Add Subject
       </button>
-      
+
       {/* Helpful instruction note */}
       {data.length > 0 && (
         <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-4 rounded-r-lg">
@@ -194,7 +194,8 @@ function App() {
             </div>
             <div className="ml-3">
               <p className="text-sm text-blue-700">
-                <strong>Tip:</strong> Tap on the number under "Missed" to update your missed lectures count.
+                <strong>Tip:</strong> Tap on the number under "Missed" to update
+                your missed lectures count.
               </p>
             </div>
           </div>
