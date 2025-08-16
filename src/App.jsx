@@ -185,22 +185,16 @@ function App() {
         Add Subject
       </button>
 
-      {/* Helpful instruction note */}
-      {data.length > 0 && (
-        <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-4 rounded-r-lg">
-          <div className="flex items-start">
-            <div className="flex-shrink-0">
-              <span className="text-blue-400 text-lg">💡</span>
-            </div>
-            <div className="ml-3">
-              <p className="text-sm text-blue-700">
-                <strong>Tip:</strong> Tap on the number under "Missed" to update
-                your missed lectures count.
-              </p>
-            </div>
-          </div>
+      {/* Always visible helpful instruction note */}
+      <div className="bg-blue-50 border-l-4 border-blue-400 p-3 rounded-r-lg">
+        <div className="flex items-center">
+          <span className="text-blue-400 text-lg mr-2">💡</span>
+          <p className="text-sm text-blue-700">
+            <strong>Tip:</strong> Tap on the number under "Missed" to update
+            your missed lectures count.
+          </p>
         </div>
-      )}
+      </div>
       <div>
         {data.map((sub, i) => {
           const leavesLeft = Math.floor(
