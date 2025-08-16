@@ -45,7 +45,7 @@ function LandingPage() {
 
   const handleGetStarted = () => {
     // Simple page redirect - works without react-router
-    window.location.href = "/Absent-tracker";
+    window.location.href = "/";
   };
 
   const getCardStyle = (leavesLeft) => {
