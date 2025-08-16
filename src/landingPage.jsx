@@ -45,7 +45,7 @@ function LandingPage() {
   }, []);
 
   const navigate = useNavigate();
-  const handleGetStarted = () => navigate("/Dashboard");
+  const handleGetStarted = () => navigate("/dashboard");
 
   const getCardStyle = (leavesLeft) => {
     const leaves = Number(leavesLeft);
