@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import LandingPage from "./landingPage";
+import LandingPage from "./LandingPage";
+
 function App() {
+  // New state to control which view to show
+  const [showLanding, setShowLanding] = useState(true);
+  
+  // Your existing states
   const [change, setChange] = useState(false);
   const [subName, setSubName] = useState("");
   const [subHours, setSubHours] = useState();
@@ -12,15 +17,25 @@ function App() {
     return savedData ? JSON.parse(savedData) : [];
   });
 
-  useEffect(() => {
-    localStorage.setItem("subjects", JSON.stringify(data));
-  }, [data]);
-
   const isDataValid =
     subName.trim() !== "" &&
     subHours !== "" &&
     !isNaN(subHours) &&
     subHours != 0;
+
+  useEffect(() => {
+    localStorage.setItem("subjects", JSON.stringify(data));
+  }, [data]);
+
+  // Function to handle transition from landing to app
+  const handleGetStarted = () => {
+    setShowLanding(false);
+  };
+
+  // Function to go back to landing page
+  const handleBackToLanding = () => {
+    setShowLanding(true);
+  };
 
   const handleClick = () => {
     setChange(!change);
@@ -54,8 +69,26 @@ function App() {
     setSubToDel(null);
   };
 
+  // Conditional rendering
+  if (showLanding) {
+    return <LandingPage onGetStarted={handleGetStarted} />;
+  }
+
+  // Your existing attendance tracker app
   return (
     <div className="flex p-4 flex-col h-screen space-y-6 w-full mx-auto">
+      {/* Back to Landing Button */}
+      <div className="flex justify-between items-center">
+        <button
+          onClick={handleBackToLanding}
+          className="text-blue-500 hover:text-blue-700 font-semibold"
+        >
+          ← Back to Home
+        </button>
+        <h1 className="text-2xl font-bold text-gray-800">Attendance Tracker</h1>
+        <div></div> {/* Spacer for centering */}
+      </div>
+
       {change && (
         <div className="fixed inset-0 bg-black/40 backdrop-filter backdrop-blur z-10 flex items-center justify-center">
           <div className="bg-white rounded-lg mx-2 shadow-xl p-6 space-y-4 w-full max-w-sm ">
@@ -151,6 +184,22 @@ function App() {
       >
         Add Subject
       </button>
+      
+      {/* Helpful instruction note */}
+      {data.length > 0 && (
+        <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-4 rounded-r-lg">
+          <div className="flex items-start">
+            <div className="flex-shrink-0">
+              <span className="text-blue-400 text-lg">💡</span>
+            </div>
+            <div className="ml-3">
+              <p className="text-sm text-blue-700">
+                <strong>Tip:</strong> Tap on the number under "Missed" to update your missed lectures count.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
       <div>
         {data.map((sub, i) => {
           const leavesLeft = Math.floor(
