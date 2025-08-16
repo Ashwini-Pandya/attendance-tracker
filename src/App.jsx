@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import LandingPage from "./LandingPage";
+import LandingPage from "./landingPage";
 
 function App() {
   // New state to control which view to show
