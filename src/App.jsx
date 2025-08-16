@@ -4,7 +4,6 @@ import LandingPage from "./landingPage";
 
 function App() {
   // New state to control which view to show
-  const [showLanding, setShowLanding] = useState(true);
 
   // Your existing states
   const [change, setChange] = useState(false);
@@ -27,15 +26,7 @@ function App() {
     localStorage.setItem("subjects", JSON.stringify(data));
   }, [data]);
 
-  // Function to handle transition from landing to app
-  const handleGetStarted = () => {
-    setShowLanding(false);
-  };
-
   // Function to go back to landing page
-  const handleBackToLanding = () => {
-    setShowLanding(true);
-  };
 
   const handleClick = () => {
     setChange(!change);
@@ -69,26 +60,9 @@ function App() {
     setSubToDel(null);
   };
 
-  // Conditional rendering
-  if (showLanding) {
-    return <LandingPage onGetStarted={handleGetStarted} />;
-  }
-
   // Your existing attendance tracker app
   return (
     <div className="flex p-4 flex-col h-screen space-y-6 w-full mx-auto">
-      {/* Back to Landing Button */}
-      <div className="flex justify-between items-center">
-        <button
-          onClick={handleBackToLanding}
-          className="text-blue-500 hover:text-blue-700 font-semibold"
-        >
-          ← Back to Home
-        </button>
-        <h1 className="text-2xl font-bold text-gray-800">Attendance Tracker</h1>
-        <div></div> {/* Spacer for centering */}
-      </div>
-
       {change && (
         <div className="fixed inset-0 bg-black/40 backdrop-filter backdrop-blur z-10 flex items-center justify-center">
           <div className="bg-white rounded-lg mx-2 shadow-xl p-6 space-y-4 w-full max-w-sm ">
