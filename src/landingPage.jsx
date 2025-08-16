@@ -45,7 +45,7 @@ function LandingPage() {
 
   const handleGetStarted = () => {
     // Simple page redirect - works without react-router
-    window.location.href = "/";
+    window.location.href = "/App";
   };
 
   const getCardStyle = (leavesLeft) => {
