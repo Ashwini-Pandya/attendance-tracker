@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
   const [isDisplayed, setIsDisplayed] = useState(false);
@@ -43,10 +44,8 @@ function LandingPage() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleGetStarted = () => {
-    // Simple page redirect - works without react-router
-    window.location.href = "/App";
-  };
+  const navigate = useNavigate();
+  const handleGetStarted = () => navigate("/App");
 
   const getCardStyle = (leavesLeft) => {
     const leaves = Number(leavesLeft);
